@@ -32,9 +32,8 @@ interface Metrics {
   accuracy: number; precision: number; recall: number; f1: number; fpr: number;
 }
 
-// --- Constants ---
-const API_BASE = 'http://localhost:8000';
-const WS_URL = 'ws://localhost:8000/stream?tps=20&rows=10000';
+const API_BASE = import.meta.env.VITE_API_URL || 'http://localhost:8000';
+const WS_URL = `${API_BASE.replace('https', 'wss').replace('http', 'ws')}/stream?tps=20&rows=10000`;
 
 const METRIC_COLORS = {
   legit: '#238636',   // green
